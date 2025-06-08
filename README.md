@@ -26,7 +26,7 @@ You can fork this repository to create your own working environment, track your 
 1. Open your terminal or command prompt.
 2. Clone your forked repository to your local machine:
    ```bash
-   git clone https://github.com/<your-username>/CS61A-Assignments.git
+   git clone https://github.com/wa-jhx-ter/CS61A-Assignments.git
    ```
 
 #### 3. Work on Assignments
@@ -43,7 +43,7 @@ You can fork this repository to create your own working environment, track your 
 #### 4. Test Your Work
 After completing or making progress on an assignment, use the following command to test your solution locally:
 ```bash
-python3 ok -q <file_name> --local
+py ok -q <file_name> --local
 ```
 Replace `<file_name>` with the name of the specific file you want to test.
 
@@ -80,7 +80,7 @@ Replace `<file_name>` with the name of the specific file you want to test.
 1. 打开终端或命令提示符。
 2. 将 Fork 后的仓库克隆到本地：
    ```bash
-   git clone https://github.com/<your-username>/CS61A-Assignments.git
+   git clone https://github.com/wa-jhx-ter/CS61A-Assignments.git
    ```
 
 #### 3. 开始完成作业
@@ -97,7 +97,7 @@ Replace `<file_name>` with the name of the specific file you want to test.
 #### 4. 测试您的代码
 完成作业或取得进展后，使用以下命令在本地测试代码：
 ```bash
-python3 ok -q <file_name> --local
+py ok -q <file_name> --local
 ```
 将 `<file_name>` 替换为您希望测试的具体文件名称。
 
