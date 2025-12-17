@@ -25,6 +25,16 @@ def num_eights(n):
     True
     """
     "*** YOUR CODE HERE ***"
+    if n > 0:
+        if n % 10 == 8:
+            return num_eights(n // 10) + 1
+        elif n // 10 > 0:
+            return num_eights(n // 10)
+        else: 
+            return 0
+    return 0
+
+
 
 
 def digit_distance(n):
@@ -47,7 +57,11 @@ def digit_distance(n):
     True
     """
     "*** YOUR CODE HERE ***"
-
+    if n < 10:
+        return 0
+    if n >= 10:
+        curr_digits, former_digits = n % 10, n // 10 % 10
+        return abs(curr_digits - former_digits) + digit_distance(n // 10)
 
 def interleaved_sum(n, odd_func, even_func):
     """Compute the sum odd_func(1) + even_func(2) + odd_func(3) + ..., up
@@ -71,7 +85,18 @@ def interleaved_sum(n, odd_func, even_func):
     True
     """
     "*** YOUR CODE HERE ***"
-
+    
+    def odd_helper(k):
+        if k <= n:
+            return odd_func(k) + even_helper(k + 1)
+        return 0
+    def even_helper(k):
+        if k <= n:
+            return even_func(k) + odd_helper(k + 1)
+        return 0
+    k = 1
+    return odd_helper(k)
+    
 
 def next_smaller_dollar(bill):
     """Returns the next smaller bill in order."""
@@ -107,7 +132,19 @@ def count_dollars(total):
     True
     """
     "*** YOUR CODE HERE ***"
-
+    def count_partitions(n, m):
+        if n == 0:
+            return 1
+        elif n < 0:
+            return 0
+        elif m is None or m == 0:
+            return 0
+        elif n < m:
+            return count_partitions(n, next_smaller_dollar(m))
+        else:
+            return count_partitions(n - m, m) + count_partitions(n, next_smaller_dollar(m))
+    return count_partitions(total, 100)
+    
 
 def next_larger_dollar(bill):
     """Returns the next larger bill in order."""
@@ -143,7 +180,18 @@ def count_dollars_upward(total):
     True
     """
     "*** YOUR CODE HERE ***"
-
+    def count_partitions(n, m):
+        if n == 0:
+            return 1
+        elif n < 0:
+            return 0
+        elif m is None or m == 0:
+            return 0
+        elif n < m:
+            return count_partitions(n, next_larger_dollar(m))
+        else:
+            return count_partitions(n - m, m) + count_partitions(n, next_larger_dollar(m))
+    return count_partitions(total, 1)
 
 def print_move(origin, destination):
     """Print instructions to move a disk."""
@@ -178,7 +226,12 @@ def move_stack(n, start, end):
     """
     assert 1 <= start <= 3 and 1 <= end <= 3 and start != end, "Bad start/end"
     "*** YOUR CODE HERE ***"
-
+    if n == 1:
+        print_move(start, end)
+    else:
+        move_stack(n - 1, start, 6 - start - end)
+        print_move(start, end)
+        move_stack(n - 1, 6 - start - end, end)
 
 from operator import sub, mul
 
@@ -193,5 +246,6 @@ def make_anonymous_factorial():
     ...     ['Assign', 'AnnAssign', 'AugAssign', 'NamedExpr', 'FunctionDef', 'Recursion'])
     True
     """
-    return 'YOUR_EXPRESSION_HERE'
+    
+    return (lambda f: f(f))(lambda f: lambda n: 1 if n == 1 else mul(n, f(f)(sub(n, 1))))
 
